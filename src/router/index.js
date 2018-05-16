@@ -18,12 +18,20 @@ export const constantRouterMap = [{
         component: Layout,
         name: "Layout",
         children: [{
-            path: "sitemap",
-            name: "sitemap",
-            component: () =>
-                import ("@/views/sitemap"),
-            meta: { title: "首页", icon: "table" }
-        }]
+                path: "sitemap",
+                name: "sitemap",
+                component: () =>
+                    import ("@/views/sitemap"),
+                meta: { title: "首页", icon: "table" }
+            },
+            {
+                path: "product",
+                name: "product",
+                component: () =>
+                    import ("@/views/item"),
+                meta: { title: "产品管理", icon: "table" }
+            }
+        ]
     }
 ];
 

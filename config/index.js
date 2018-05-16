@@ -10,18 +10,11 @@ module.exports = {
         assetsSubDirectory: "static",
         assetsPublicPath: "/authorization/",
         proxyTable: {
-            "/cloud": {
-                target: "http://192.168.66.158:8080/",
+            "/dwq": {
+                target: "http://localhost:3000/",
                 changeOrigin: true,
                 pathRewrite: {
-                    "^/cloud": "/cloud"
-                }
-            },
-            "/uaa": {
-                target: "http://192.168.66.158:28089/",
-                changeOrigin: true,
-                pathRewrite: {
-                    "^/uaa": "/uaa"
+                    "^/dwq": "/dwq"
                 }
             }
         },

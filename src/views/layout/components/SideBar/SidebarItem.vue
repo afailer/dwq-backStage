@@ -2,7 +2,7 @@
   <div class="menu-wrapper">
 
    <template v-for="item in menus">
-     <router-link :to="item.path" :key="item.id">
+     <router-link :to="item.path" :key="item.code">
        <el-menu-item :index="item.path" :class="{'submenu-title-noDropdown':!isNest}">
          <i v-if="item.icon" :class="item.icon"></i>
          <span>{{item.name}}</span>
@@ -41,6 +41,12 @@ export default {
         ename: "sitemap",
         icon: "fa fa-home",
         path: "/sitemap"
+      },{
+        code: "2",
+        name: "产品",
+        ename: "product",
+        icon: "fa fa-home",
+        path: "/product"
       });
     }
   }

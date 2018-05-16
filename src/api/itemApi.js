@@ -1,7 +1,8 @@
 import request from "@/utils/request";
-export function getSideBar() {
+export function addItem(data) {
     return request({
-        method: "get",
-        url: "/uaa/zone/getZoneActiveBuildInPermissions?zoneCode=" + zoneCode
+        method: "post",
+        url: "/dwq/item/addItem",
+        data: data
     });
 }
