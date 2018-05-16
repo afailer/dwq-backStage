@@ -6,3 +6,10 @@ export function addItem(data) {
         data: data
     });
 }
+export function getItemListByPage(data) {
+    return request({
+        method: "post",
+        url: "/dwq/item/getItemListByPage",
+        data: data
+    });
+}
