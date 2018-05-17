@@ -1,43 +1,30 @@
 <template>
     <div class="container">
+      <itemDialog></itemDialog>
         <el-button type="primary" plain @click="handleAddItem">创建产品</el-button>
+        <itemTable></itemTable>
     </div>
 </template>
 
 <script>
-import { addItem, getItemListByPage } from "@/api/itemApi.js";
+import itemDialog from "./itemDialog"
+import itemTable from "./itemTable"
 export default {
   name: "item",
+  components: {
+    itemDialog,
+    itemTable
+  },
   data() {
     return {};
   },
   methods: {
     handleAddItem() {
-      let data = {
-        typeId: 1,
-        ServerLevel: 1,
-        title: "保洁",
-        icon: "https://www.tjwq666.com/img/spa.png",
-        shortMsg: "专业保洁",
-        price: "128",
-        detail: "专业足疗，大武清666",
-        weight: 1
-      };
-      addItem(data)
-        .then(result => {
-          console.log(result);
-        })
-        .catch(err => {});
+       this.$bus.$emit("createItem", {isEdit:false,form:{}});
     }
   },
   mounted() {
-    let data = {
-      page: 0,
-      size: 10
-    };
-    getItemListByPage(data).then(result => {
-      console.log(result);
-    });
+    
   }
 };
 </script>
