@@ -27,7 +27,7 @@
             <el-input v-model="form.weight"></el-input>
         </el-form-item>
         <el-form-item>
-           <el-button type="primary" @click="handleCreate">立即创建</el-button>
+           <el-button type="primary" @click="handleClick">确定</el-button>
            <el-button>取消</el-button>
         </el-form-item>
     </el-form>
@@ -35,28 +35,36 @@
 </template>
 
 <script>
-import { addItem } from "@/api/itemApi.js";
-  export default {
-    data() {
-      return {
-        showItemDialog: false,
-        isEdit:false,
-        form:{}
-      };
-    },
-    methods: {
-        handleCreate(){
-          addItem(form).then(result => {
-            console.log(result);
-          }).catch(err => {});
-        }
-    },
-    created () {
-      this.$bus.$on("createItem", (info) => {
-          this.isEdit = info.isEdit;
-          this.form = info.form;
-        this.showItemDialog = true;
-      });
+import { addItem, updateItem } from "@/api/itemApi.js";
+export default {
+  data() {
+    return {
+      showItemDialog: false,
+      isEdit: false,
+      form: {}
+    };
+  },
+  methods: {
+    handleClick() {
+      if (this.isEdit) {
+        updateItem(this.form).then(result => {
+          this.$bus.$emit("reload", "");
+        });
+      } else {
+        addItem(this.form)
+          .then(result => {
+            this.$bus.$emit("reload", "");
+          })
+          .catch(err => {});
+      }
     }
-  };
+  },
+  created() {
+    this.$bus.$on("createItem", info => {
+      this.isEdit = info.isEdit;
+      this.form = info.form;
+      this.showItemDialog = true;
+    });
+  }
+};
 </script>

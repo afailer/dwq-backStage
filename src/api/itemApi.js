@@ -13,3 +13,17 @@ export function getItemListByPage(data) {
         data: data
     });
 }
+export function updateItem(data) {
+    return request({
+        method: "post",
+        url: "/dwq/item/updateItem",
+        data: data
+    });
+}
+export function deleteItem(data) {
+    return request({
+        method: "post",
+        url: "/dwq/item/deleteItem",
+        data: data
+    });
+}
